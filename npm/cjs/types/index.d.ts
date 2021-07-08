@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import QueueLink from "@SocialAutoTransport/apollo-link-queue";
+import QueueLink from "../../QueueLink";
 export declare type LogLevel = "log" | "warn" | "error";
 export declare type LogLine = [LogLevel, any[]];
 export declare type TriggerUninstallFunction = () => void;

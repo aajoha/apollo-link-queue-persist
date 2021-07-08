@@ -4,7 +4,7 @@ var Log_1 = require("./Log");
 var Queue_1 = require("./Queue");
 var Storage_1 = require("./Storage");
 var Persistor_1 = require("./Persistor");
-var apollo_link_queue_1 = require("@SocialAutoTransport/apollo-link-queue");
+var apollo_link_queue_1 = require("./QueueLink");
 var QueuePersistor = (function () {
     function QueuePersistor(options) {
         var _this = this;

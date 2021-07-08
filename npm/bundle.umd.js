@@ -1,6 +1,6 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@SocialAutoTransport/apollo-link-queue')) :
-    typeof define === 'function' && define.amd ? define(['exports', '@SocialAutoTransport/apollo-link-queue'], factory) :
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('./QueueLink')) :
+    typeof define === 'function' && define.amd ? define(['exports', './QueueLink'], factory) :
     (global = global || self, factory(global['apollo-cache-persist'] = {}, global.QueueLink));
 }(this, (function (exports, QueueLink) { 'use strict';
 

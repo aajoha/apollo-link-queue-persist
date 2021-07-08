@@ -1,6 +1,6 @@
 {
-    "name": "@SocialAutoTransport/apollo-link-queue-persist",
-    "version": "0.0.19",
+    "name": "alqp-test",
+    "version": "0.0.1",
     "description": "Simple persistence for Apollo link queue instances",
     "author": "Rob Newton <robbienewton@gmail.com>",
     "contributors": [
@@ -67,11 +67,7 @@
         ]
     },
     "publishConfig": {
-        "cache": "~/.npm",
-        "registry": "https://npm.pkg.github.com/SocialAutoTransport"
-    },
-    "dependencies": {
-        "@SocialAutoTransport/apollo-link-queue": "^3.2.6"
+        "cache": "~/.npm"
     },
     "peerDependencies": {
         "@apollo/client": "^3.2.5"
@@ -82,7 +78,7 @@
         "@types/react-native": "0.63.37",
         "apollo-cache-hermes": "0.8.14",
         "browserify": "16.5.0",
-        "bundlesize": "0.18.0",
+        "bundlesize": "^0.18.1",
         "codecov": "3.8.0",
         "danger": "7.1.4",
         "graphql": "15.4.0",

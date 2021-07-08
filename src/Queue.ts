@@ -1,6 +1,6 @@
 import { GraphQLRequest } from '@apollo/client/link/core';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import QueueLink, { OperationQueueEntry } from '@SocialAutoTransport/apollo-link-queue';
+import QueueLink, { OperationQueueEntry } from './QueueLink';
 import { ApolloPersistOptions, PersistedData } from './types';
 
 export default class Queue<T> {

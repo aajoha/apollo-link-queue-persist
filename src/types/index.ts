@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import QueueLink from "@SocialAutoTransport/apollo-link-queue";
+import QueueLink from "../QueueLink";
 
 export type LogLevel = "log" | "warn" | "error";
 
