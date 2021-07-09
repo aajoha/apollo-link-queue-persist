@@ -1,6 +1,6 @@
 # apollo-link-queue-persist
 
-__This is a fork from the repository below. The package was not published because of new rules for package names in npm. This fork also incorporates the QueueLink instance mentioned below, so that is no longer a requirement__
+__This is a fork from the repository below. The package was not published because of new rules for package names in npm. This fork also incorporates the QueueLink instance mentioned below, so that is no longer a requirement. Support for any ApolloClient subtype is also added.__
 
 Simple persistence for any queued Apollo queries when using [`helfer/apollo-link-queue`][0]. At initial build time, @helfer has not yet pulled in the changes required in `apollo-link-queue` so in order for this to work, you'll need to make use of our fork at [`@SocialAutoTransport/apollo-link-queue`][1]
 

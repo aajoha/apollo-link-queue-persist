@@ -1,12 +1,12 @@
 import { GraphQLRequest } from '@apollo/client/link/core';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient } from '@apollo/client';
 import QueueLink, { OperationQueueEntry } from './QueueLink';
 import { ApolloPersistOptions, PersistedData } from './types';
 
 export default class Queue<T> {
   queueLink: QueueLink;
   serialize: boolean;
-  client: ApolloClient<InMemoryCache>;
+  client: ApolloClient<any>;
   beforeRestore: any;
   onCompleted: any;
   onError: any;

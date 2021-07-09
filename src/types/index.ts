@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient } from "@apollo/client";
 import QueueLink from "../QueueLink";
 
 export type LogLevel = "log" | "warn" | "error";
@@ -26,7 +26,7 @@ export interface ApolloPersistOptions<TSerialized> {
   serialize?: boolean;
   maxSize?: number | false;
   debug?: boolean;
-  client: ApolloClient<InMemoryCache>;
+  client: ApolloClient<any>;
   beforeRestore: any;
   onCompleted: any;
   onError: any;
