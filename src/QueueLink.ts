@@ -3,6 +3,7 @@ import {
   Operation,
   FetchResult,
   NextLink,
+  DocumentNode,
 } from "@apollo/client/link/core";
 import { Observable, Observer } from "@apollo/client/utilities";
 
@@ -15,13 +16,14 @@ export const createGuid = () => {
   return _p8(false) + _p8(true) + _p8(true) + _p8(false);
 };
 
-interface OperationQueueEntry {
+export interface OperationQueueEntry {
   operation: Operation;
   forward: NextLink;
   observer: Observer<FetchResult>;
   subscription?: { unsubscribe: () => void };
 }
 
+type OperationTypeNode = 'query' | 'mutation' | 'subscription';
 type event = "dequeue" | "enqueue" | "change";
 
 interface Listener {
@@ -40,6 +42,14 @@ export default class QueueLink extends ApolloLink {
   }
 
   public length = () => this.opQueue.length;
+
+  public isType(query: DocumentNode, type: OperationTypeNode): boolean {
+    return query.definitions.filter((e) => {
+      return (e as any).operation === type
+    }).length > 0;
+  }
+
+  public getQueue = () => this.opQueue;
 
   public open() {
     this.isOpen = true;
