@@ -61,7 +61,7 @@ export default class Queue<T> {
         let workingGraphqlRequest = {...graphqlRequest};
         try {
           workingGraphqlRequest = this.beforeRestore(workingGraphqlRequest);
-        } catch (error) {}
+        } catch (error) {console.log(error)}
         const { query, variables, context } = (workingGraphqlRequest as unknown) as GraphQLRequest;
         if (this.queueLink.isType(query, 'mutation')) {
           this.client.mutate({mutation: query, variables, context})
