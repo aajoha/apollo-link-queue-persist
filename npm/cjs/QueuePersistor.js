@@ -24,12 +24,8 @@ var QueuePersistor = (function () {
         this.queue = queue;
         this.storage = storage;
         this.persistor = persistor;
-        apollo_link_queue_1.default.addLinkQueueEventListener("any", "enqueue", function (item) {
-            _this.log.info('QueueLink listener (any, enqueued) fired', item);
-            _this.persistor.persist();
-        });
-        apollo_link_queue_1.default.addLinkQueueEventListener("any", "dequeue", function (item) {
-            _this.log.info('QueueLink listener (any, dequeue) fired', item);
+        apollo_link_queue_1.default.addLinkQueueEventListener("", "change", function (item) {
+            _this.log.info('QueueLink listener ("", change) fired', item);
             _this.persistor.persist();
         });
     }

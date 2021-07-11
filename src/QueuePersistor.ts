@@ -16,14 +16,14 @@ export default class QueuePersistor<T> {
     if (!options.queueLink) {
       throw new Error(
         'In order to persist your Apollo Link Queue, you need to pass in a link queue instance. ' +
-          'Please see https://github.com/helfer/apollo-link-queue for more information.'
+        'Please see https://github.com/helfer/apollo-link-queue for more information.'
       );
     }
 
     if (!options.storage) {
       throw new Error(
         'In order to persist your Apollo Link Queue, you need to pass in an underlying storage provider. ' +
-          'Please see https://github.com/SocialAutoTransport/apollo-link-queue-persist#storage-providers'
+        'Please see https://github.com/SocialAutoTransport/apollo-link-queue-persist#storage-providers'
       );
     }
 
@@ -37,13 +37,9 @@ export default class QueuePersistor<T> {
     this.storage = storage;
     this.persistor = persistor;
 
-    QueueLink.addLinkQueueEventListener("any", "enqueue", (item: any) => {
-      this.log.info('QueueLink listener (any, enqueued) fired', item);
-      this.persistor.persist();
-    });
-
-    QueueLink.addLinkQueueEventListener("any", "dequeue", (item: any) => {
-      this.log.info('QueueLink listener (any, dequeue) fired', item);
+    QueueLink.addLinkQueueEventListener("", "change", (item: any) => {
+      this.log.info('QueueLink listener ("", "change") fired', item);
+      console.log("QueueLink persisted");
       this.persistor.persist();
     });
   }
