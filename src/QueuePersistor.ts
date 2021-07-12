@@ -39,7 +39,6 @@ export default class QueuePersistor<T> {
 
     QueueLink.addLinkQueueEventListener("", "change", (item: any) => {
       this.log.info('QueueLink listener ("", "change") fired', item);
-      console.log("QueueLink persisted");
       this.persistor.persist();
     });
   }
