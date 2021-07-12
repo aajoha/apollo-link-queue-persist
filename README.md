@@ -1,6 +1,6 @@
 # apollo-link-queue-persist
 
-__This is a fork from the repository below. The package was not published because of new rules for package names in npm. This fork also incorporates the QueueLink instance mentioned below, so that is no longer a requirement. Support for any ApolloClient subtype is also added.__
+**This is a fork from the repository below. The package was not published because of new rules for package names in npm. This fork also incorporates the QueueLink instance mentioned below, so that is no longer a requirement. Support for any ApolloClient subtype is also added.**
 
 Simple persistence for any queued Apollo queries when using [`helfer/apollo-link-queue`][0]. At initial build time, @helfer has not yet pulled in the changes required in `apollo-link-queue` so in order for this to work, you'll need to make use of our fork at [`@SocialAutoTransport/apollo-link-queue`][1]
 
@@ -40,9 +40,11 @@ await persistQueue({
 ```
 
 ### BeforeRestore()
+
 You can optionally pass a function to the `beforeRestore` option that will allow you to make a modification to the graphqlrequest that was queued just before it is restored. The function should accept the graphqlrequest object as a parameter and must return the modified copy of the request. Internally the restore function will then call client.mutate or client.query with the modified request object instead of the original which was queued.
 
 ### OnCompleted()
+
 You can optionally pass a function to the `onCompleted` option that will be called after the persisted graphql request is restored and ran. The function should accept the graphqlrequest and response object. This allows for triggering business logic in your app after the requests are run emulating the same behavior of the onCompleted property of a useMutation or useQuery hook.
 
 ```js
@@ -51,16 +53,19 @@ await persistQueue({
   storage: AsyncStorage,
   client: apolloClient,
   onCompleted: (request, response) => {
-    console.log('Called onCompleted()', request, response);
+    console.log("Called onCompleted()", request, response);
     //Optional request specific handling
-    if (request.context.customProperty === 'some specific value') {
-      console.log('Do something specific based on that query or mutation running successfully');
+    if (request.context.customProperty === "some specific value") {
+      console.log(
+        "Do something specific based on that query or mutation running successfully"
+      );
     }
-  }
+  },
 });
 ```
 
 ### OnError()
+
 You can optionally pass a function to the `onError` option that will be called if the persisted graphql request fails to run successfully. The function should accept the graphqlrequest and the error object.
 
 ```js
@@ -69,12 +74,14 @@ await persistQueue({
   storage: AsyncStorage,
   client: apolloClient,
   onError: (request, error) => {
-    console.error('Called onError()', request, error);
+    console.error("Called onError()", request, error);
     //Optional request specific handling
-    if (request.context.customProperty === 'some specific value') {
-      console.error('Do something specific based on that query or mutation failing');
+    if (request.context.customProperty === "some specific value") {
+      console.error(
+        "Do something specific based on that query or mutation failing"
+      );
     }
-  }
+  },
 });
 ```
 
@@ -82,26 +89,26 @@ await persistQueue({
 
 `apollo-link-queue-persist` provides wrappers for the following storage providers, with no additional dependencies:
 
-| Storage provider | Platform	| Wrapper class	|
-|---	|---	|---	|
-| [`AsyncStorage`](https://github.com/react-native-async-storage/async-storage)*	| React Native	| `AsyncStorageWrapper`	|
-| `window.localStorage`	| web	| `LocalStorageWrapper`	|
-| `window.sessionStorage`	| web	| `SessionStorageWrapper`	|
-| [`localForage`](https://github.com/localForage/localForage)	| web	| `LocalForageWrapper`	|
-| [`Ionic storage`](https://ionicframework.com/docs/building/storage)	| web and mobile	| `IonicStorageWrapper`	|
-| [`MMKV Storage`](https://github.com/ammarahm-ed/react-native-mmkv-storage)	| React Native	| `MMKVStorageWrapper`	|
+| Storage provider                                                                | Platform       | Wrapper class           |
+| ------------------------------------------------------------------------------- | -------------- | ----------------------- |
+| [`AsyncStorage`](https://github.com/react-native-async-storage/async-storage)\* | React Native   | `AsyncStorageWrapper`   |
+| `window.localStorage`                                                           | web            | `LocalStorageWrapper`   |
+| `window.sessionStorage`                                                         | web            | `SessionStorageWrapper` |
+| [`localForage`](https://github.com/localForage/localForage)                     | web            | `LocalForageWrapper`    |
+| [`Ionic storage`](https://ionicframework.com/docs/building/storage)             | web and mobile | `IonicStorageWrapper`   |
+| [`MMKV Storage`](https://github.com/ammarahm-ed/react-native-mmkv-storage)      | React Native   | `MMKVStorageWrapper`    |
 
-*`AsyncStorage`
+\*`AsyncStorage`
 [does not support](https://github.com/facebook/react-native/issues/12529#issuecomment-345326643)
-individual values in excess of 2 MB on Android. If you set `maxSize` to more than 2 MB or to `false`, 
+individual values in excess of 2 MB on Android. If you set `maxSize` to more than 2 MB or to `false`,
 use a different storage provider, such as
-[`react-native-mmkv-storage`](https://github.com/ammarahm-ed/react-native-mmkv-storage) or 
+[`react-native-mmkv-storage`](https://github.com/ammarahm-ed/react-native-mmkv-storage) or
 [`redux-persist-fs-storage`](https://github.com/leethree/redux-persist-fs-storage).
 
 ### Using other storage providers
 
-`apollo-link-queue-persist` supports stable versions of storage providers mentioned above. 
+`apollo-link-queue-persist` supports stable versions of storage providers mentioned above.
 If you want to use other storage provider, or there's a breaking change in `next` version of supported provider,
-you can create your own wrapper. For an example of a simple wrapper have a look at [`AsyncStorageWrapper`](./src/storageWrappers/AsyncStorageWrapper.ts). 
+you can create your own wrapper. For an example of a simple wrapper have a look at [`AsyncStorageWrapper`](./src/storageWrappers/AsyncStorageWrapper.ts).
 
 If you found that stable version of supported provider is no-longer compatible, please [submit an issue or a Pull Request](https://github.com/apollographql/apollo-cache-persist/blob/master/CONTRIBUTING.md#issues).
