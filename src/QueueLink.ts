@@ -7,11 +7,10 @@ import {
 } from "@apollo/client/link/core";
 import { Observable, Observer } from "@apollo/client/utilities";
 
-
 export const createGuid = () => {
   function _p8(s: boolean) {
-    var p = (Math.random().toString(16) + "000000000").substr(2, 8);
-    return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+    var p = (Math.random().toString(16) + "000000000").substring(2, 10);
+    return s ? "-" + p.substring(0, 4) + "-" + p.substring(4, 8) : p;
   }
   return _p8(false) + _p8(true) + _p8(true) + _p8(false);
 };
@@ -23,7 +22,7 @@ export interface OperationQueueEntry {
   subscription?: { unsubscribe: () => void };
 }
 
-type OperationTypeNode = 'query' | 'mutation' | 'subscription';
+type OperationTypeNode = "query" | "mutation" | "subscription";
 type event = "dequeue" | "enqueue" | "change";
 
 interface Listener {
@@ -44,9 +43,11 @@ export default class QueueLink extends ApolloLink {
   public length = () => this.opQueue.length;
 
   public isType(query: DocumentNode, type: OperationTypeNode): boolean {
-    return query.definitions.filter((e) => {
-      return (e as any).operation === type
-    }).length > 0;
+    return (
+      query.definitions.filter((e) => {
+        return (e as any).operation === type;
+      }).length > 0
+    );
   }
 
   public getQueue = () => this.opQueue;
@@ -56,7 +57,7 @@ export default class QueueLink extends ApolloLink {
     const opQueueCopy = [...this.opQueue];
     this.opQueue = [];
     opQueueCopy.forEach((entry) => {
-      this.triggerListeners(entry, "dequeue")
+      this.triggerListeners(entry, "dequeue");
 
       entry.forward(entry.operation).subscribe(entry.observer);
     });
