@@ -1,6 +1,6 @@
 {
   "name": "apollo-link-queue-persist",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Simple persistence for Apollo link queue instances",
   "author": "Rob Newton <robbienewton@gmail.com>",
   "contributors": [

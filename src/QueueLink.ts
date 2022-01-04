@@ -37,7 +37,7 @@ export default class QueueLink extends ApolloLink {
 
   public clear() {
     this.opQueue = [];
-    QueueLink.listeners = {};
+    this.triggerChangeListeners();
   }
 
   public length = () => this.opQueue.length;
@@ -137,13 +137,18 @@ export default class QueueLink extends ApolloLink {
   }
 
   private triggerListeners(entry: OperationQueueEntry, event: string) {
-    let key: string = QueueLink.key(entry.operation.operationName, event);
+    const key: string = QueueLink.key(entry.operation.operationName, event);
     if (key in QueueLink.listeners) {
       QueueLink.listeners[key].forEach((listener) => {
         listener.callback(entry);
       });
     }
-    key = QueueLink.key("", "change");
+
+    this.triggerChangeListeners();
+  }
+
+  private triggerChangeListeners() {
+    const key = QueueLink.key("", "change");
     if (key in QueueLink.listeners) {
       QueueLink.listeners[key].forEach((listener) => {
         listener.callback(this.opQueue);
