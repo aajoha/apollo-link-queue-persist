@@ -3,9 +3,6 @@
   "version": "0.0.22",
   "description": "Simple persistence for Apollo link queue instances",
   "author": "Rob Newton <robbienewton@gmail.com>",
-  "contributors": [
-    "Rob Newton <robbienewton@gmail.com>"
-  ],
   "license": "MIT",
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.js",
@@ -13,10 +10,10 @@
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SocialAutoTransport/apollo-link-queue-persist.git"
+    "url": "git+https://github.com/Asolvi/apollo-link-queue-persist.git"
   },
-  "homepage": "https://github.com/SocialAutoTransport/apollo-link-queue-persist.git#readme",
-  "bugs": "https://github.com/SocialAutoTransport/apollo-link-queue-persist.git/issues",
+  "homepage": "https://github.com/Asolvi/apollo-link-queue-persist.git#readme",
+  "bugs": "https://github.com/Asolvi/apollo-link-queue-persist.git/issues",
   "scripts": {
     "build:browser": "browserify ./lib/bundle.umd.js -o=./lib/bundle.js && npm run minify:browser",
     "build": "tsc -p . && tsc -p ./tsconfig.cjs.json",
