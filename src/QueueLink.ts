@@ -126,7 +126,7 @@ export default class QueueLink extends ApolloLink {
     return `${op}${ev}`.toLocaleLowerCase();
   }
 
-  private cancelOperation(entry: OperationQueueEntry) {
+  public cancelOperation(entry: OperationQueueEntry) {
     this.opQueue = this.opQueue.filter((e) => e !== entry);
   }
 
